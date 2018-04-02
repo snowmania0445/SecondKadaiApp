@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var textField: UITextField!
+    //textFieldを接続
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +22,14 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let secondViewController:SecondViewController = segue.destination as! SecondViewController
+        //segueから遷移先のSecondViewControllerを取得する
+        secondViewController.inputName = textField.text!
+        //secondViewControllerで宣言しているinputNameにtextFieldの値を渡す
+    }
+    @IBAction func unwind(_ segue : UIStoryboardSegue){}
 
 }
 
